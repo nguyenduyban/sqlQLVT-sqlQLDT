@@ -1,0 +1,49 @@
+--CAU 1
+
+CREATE TABLE LOAIVATU(
+madt nchar(3),
+magv nchar(3),
+phucap float,
+tiendo nchar(10),
+primary key(madt,magv)
+)
+-- cau 2
+
+ALTER TABLE THAMGIA  ADD CONSTRAINT FK_MADT
+FOREIGN KEY (MADT) REFERENCES DETAI (MADT)
+ALTER TABLE THAMGIA  ADD CONSTRAINT FK_MAGV
+FOREIGN KEY (MAGV ) REFERENCES GIAOVIEN (MAGV)
+
+--CAU 3
+ALTER TABLE giaovien  ADD CONSTRAINT CHECK1
+CHECK(getdate())-year(ngaysinh)>25
+
+--cau 4
+insert into thamgia(madt,magv,phucap,tiendo)
+values ('','011','5000000','0%')
+
+-- cau 6
+select *
+from GIAOVIEN
+where Phai like'Nu' and month(ngaysinh)-month(getdate())
+
+--cau 7
+select thamgiadt
+from giaovien join thamgiadt on giaovien.magv=thamgiadt.magv
+where thamgiadt.magv<>'GV01'
+
+-cau 8
+select giaovien.magv,hoten,makhoa,count(thamgiadt.magv)
+from giaovien join thamgiadt on giaovien.magv =thamgiadt.magv
+group by giaovien.magv,hoten,makhoa
+having count(thamgiadt.magv)<= all
+
+--cau 9
+select *
+from detai join khoa on detai.makhoa=khoa.mahoa
+where tenkhoa like 'QTKD' and Kinhphi < (select avg(kinh phi) from detai)
+
+--cau 11 
+select k1.makhoa,gv1.hoten as hotentk , k1.matrkh as matk,gv2.hoten as tengv
+from khoa k1 join giaovien gv1 on k1.matrkh=gv1.magv,giaovien gv2 join khoa k2 on gv2.makhoa=k2.makhoa
+where k1.matrkh=gv1.magv
