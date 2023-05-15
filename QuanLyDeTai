@@ -43,6 +43,11 @@ select *
 from detai join khoa on detai.makhoa=khoa.mahoa
 where tenkhoa like 'QTKD' and Kinhphi < (select avg(kinh phi) from detai)
 
+--cau 10 TENKHOA,TENTRUONGKHOA,SOLUONG DE TAI QUAN LY
+SELECT k2.MaKhoa,k2.tenKhoa,count(detai.MaKhoa) as sl,GIAOVIEN.HoTen as tenTK
+from khoa k2 join DeTai on k2.MaKhoa = DeTai.MaKhoa join GIAOVIEN on GIAOVIEN.MaGV=k2.MaTrKh
+group by k2.TenKhoa,k2.MaKhoa,GIAOVIEN.HoTen
+
 --cau 11 
 select k1.makhoa,gv1.hoten as hotentk , k1.matrkh as matk,gv2.hoten as tengv
 from khoa k1 join giaovien gv1 on k1.matrkh=gv1.magv,giaovien gv2 join khoa k2 on gv2.makhoa=k2.makhoa
