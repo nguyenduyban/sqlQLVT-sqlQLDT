@@ -35,4 +35,26 @@ WHERE DONGIA = (SELECT MAX(DONGIA) FROM VATTU);
 SELECT MAPM,MAVT,TENVT,TENVT,SOLUONG,DONGIAMUA
 FROM VATU VT JOIN CHITIETNHAPHANG CT ON VT.MAVT=CT.MAVT
 WHERE TENVT = N'Đá Mi%'
+Oder By Soluong desc
+
+--cau 7
+select *
+from donhang don1, donghang don2
+where don1.maddh<> don2.maddh and don1.ngaydathang = don2.maddh
+oder by don1.ngaydathang desc
+
+--Cau 8
+select phieunhap,MaxPN,ngaynhap,sum(soluong *dongiamua) as TongTien
+from chitietnhaphang join phieunhap on chitiet nhaphang.MaPN = phieunhap.MaPN
+Group by phieunhap.MaPN,NgayNhap
+
+--cau 9
+select *
+from vattu
+where MaVT not in(select MaVT from chitietdonhang)
+
+--Cau 10
+select *
+from vattu
+where dongia>(select AVG(dongia) from vattu)
 
