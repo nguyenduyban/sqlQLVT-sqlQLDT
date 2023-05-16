@@ -1,0 +1,76 @@
+--XÓA BẢNG 
+DROP TABLE<TÊN BẢNG>
+--THÊM CỘT
+ALTER TABLE<TÊN BẢNG> ADD <TÊN CỘT><KIỂU DỮ LIỆU>
+--XÓA CỘT 
+ALTER TABLE <TÊN BẢNG> DROP COLUMN <TÊN CỘT >
+-- KHÓA NGOẠI
+ALTER TABLE <TÊN BẢNG 1> ADD CONSTRAINT <TÊN KHÓA NGOẠI>
+FOREIGN KEY......REFERENCES <TÊN BẢNG 2>(TÊN CỘT 2)
+-- XÓA KHÓA NGOẠI
+ALTER TABLE <TÊN BẢNG>DROP CONSTRAINT < TÊN KHÓA
+--TẠO RÀNG BUỘC KIỂM TRA
+ALTER TABLE<TEN BẢNG> ADD CONSTRAINT <TÊN RÀNG BUỘC>
+CHECK (ĐIỀU KIỆN TÊN CỘT)
+-- XÓA RÀNG BUỘC KIỂM TRA
+ALTER TABLE <<TÊN BẢNG> DROP CONSTRAINT <<TÊN RÀNG BUỘC>
+--THÊM DÒNG DỮ KIỆU
+INSERT INTO <BẢNG>( CỘT 1,2,3) VALUES (GIÁ TRỊ '1','2','3')
+-- CẬP NHẬT GIÁ TRỊ CỦA CÁC BỘ
+UPDATE <TÊN BẢNG>
+SET <THUỘC TÍNH>=<GIÁ TRỊ>
+WHERE ĐIỀU KIỆN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
