@@ -22,10 +22,13 @@ CHECK(getdate())-year(ngaysinh)>25
 insert into thamgia(madt,magv,phucap,tiendo)
 values ('','011','5000000','0%')
 
+--cau 5 tang 20% kinh phi cho cac de tai tren 15 thang
+update DeTai set KinhPhi=KinhPhi*1.2 where datediff(MONTH,ngaybd,ngaykt)>15
+
 -- cau 6 danh sách gv nữ và có ngày sinh trong năm tháng hiện tại
 select *
 from GIAOVIEN
-where Phai like'Nu' and month(ngaysinh)-month(getdate())
+where Phai like 'Nu' and MONTH(ngaySinh)=MONTH(getdate())
 
 --cau 7 mã gv '004' chưa tham gia
 select thamgiadt
@@ -33,10 +36,15 @@ from giaovien join thamgiadt on giaovien.magv=thamgiadt.magv
 where thamgiadt.magv<>'GV01'
 
 -cau 8 gv ít đề tài nhất gồm magv,hoten,makhoa,soluong đề tài 
-select giaovien.magv,hoten,makhoa,count(thamgiadt.magv)
-from giaovien join thamgiadt on giaovien.magv =thamgiadt.magv
-group by giaovien.magv,hoten,makhoa
-having count(thamgiadt.magv)<= all
+select GIAOVIEN.MaGV,HoTen,MaKhoa,count(thamgiadt.maGV)
+from GIAOVIEN join ThamGiaDT on GIAOVIEN.MaGV=ThamGiaDT.MaGV
+group by GIAOVIEN.MaGV,HoTen,MaKhoa
+having count(thamgiadt.maGV) <= all(
+select count(thamgiadt.maGV)
+from GIAOVIEN join ThamGiaDT on GIAOVIEN.MaGV=ThamGiaDT.MaGV
+group by GIAOVIEN.MaGV,HoTen,MaKhoa
+)
+
 
 --cau 9 Các đề tài có kinh phí nhỏ hơn mức kinh phí trung bình các đề do khoa'cntt' quản lý
 select *
